@@ -12,6 +12,7 @@ public class TilemapController : MonoBehaviour
     public GameObject Ground;
     public GameObject Path;
     public GameObject AddButton;
+    public GameObject RemoveButton;
 
     public Transform Camera;
 
@@ -74,7 +75,6 @@ public class TilemapController : MonoBehaviour
 
                 tile.name = $"[{x}],[{z}]";
                 tile.transform.parent = this.transform;
-
             }
         }
     }
@@ -106,6 +106,20 @@ public class TilemapController : MonoBehaviour
             DrawPoint.x * this.tileSize,
             (DrawPoint.y - 1) * this.tileSize);
 
+        // delete
+        if (DrawPoint.x != this.tileMap.startPoint.Item1 ||
+            DrawPoint.y != this.tileMap.startPoint.Item2)
+        {
+            var position = new Vector3(
+                this.DrawPoint.x * this.tileSize,
+                0,
+                this.DrawPoint.y * this.tileSize);
+
+            var removebutton = Instantiate(RemoveButton, position, Quaternion.identity);
+            var button = removebutton.GetComponent<RemoveButton>();
+            button.x = this.DrawPoint.x;
+            button.z = this.DrawPoint.y;
+        }
     }
 
     private void InstantiatePlusButton(bool condition, int x, int z)
@@ -129,6 +143,35 @@ public class TilemapController : MonoBehaviour
 
         this.tileMap.FollowingPath.Add((x, z));
 
+        this.RemoveButtons();
         this.AddBuildButton();
+    }
+
+    public void RevertDrawPoint()
+    {
+        this.tileMap.FollowingPath.RemoveAt(
+            this.tileMap.FollowingPath.Count - 1);
+
+        var point = this.tileMap.FollowingPath[this.tileMap.FollowingPath.Count - 1];
+
+        this.DrawPoint = new Vector2Int(point.Item1, point.Item2);
+
+        this.RemoveButtons();
+        this.AddBuildButton();
+    }
+
+    public void RemoveButtons()
+    {
+        var plusButtons = GameObject.FindObjectsOfType<PlusButton>();
+        foreach (var button in plusButtons)
+        {
+            Destroy(button.gameObject);
+        }
+
+        var removeButtons = GameObject.FindObjectsOfType<RemoveButton>();
+        foreach (var button in removeButtons)
+        {
+            Destroy(button.gameObject);
+        }
     }
 }

@@ -18,18 +18,12 @@ public class PlusButton : MonoBehaviour
 
         var path = Instantiate(Path, position, new Quaternion());
         path.transform.parent = this.transform.parent;
-
-        var buttons = GameObject.FindObjectsOfType<PlusButton>();
-
-        foreach (var button in buttons)
-        {
-            Destroy(button.gameObject);
-        }
+        path.name = $"[{x}],[{z}]";
 
         tilemapController.SetDrawPoint(x, z);
     }
 
-    private void OnMouseOver()
+    private void OnMouseDown()
     {
         this.AddPath();
     }

@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\GokuSSJ3.cs" />
     <Compile Include="Assets\Scripts\Level Editor\PlusButton.cs" />
+    <Compile Include="Assets\Scripts\Level Editor\RemoveButton.cs" />
     <Compile Include="Assets\Scripts\Level Editor\TileEnum.cs" />
     <Compile Include="Assets\Scripts\Level Editor\TileMap.cs" />
     <Compile Include="Assets\Scripts\Level Editor\TilemapController.cs" />

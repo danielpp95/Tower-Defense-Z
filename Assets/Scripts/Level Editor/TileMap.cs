@@ -27,7 +27,7 @@ public class TileMap
         this.sizeY = sizeY;
         this.startPoint = startPoint;
         this.endPoint = endPoint;
-        this.FollowingPath = new List<(int, int)>();
+        this.FollowingPath = new List<(int, int)> { startPoint };
 
         mapData = new int[sizeX, sizeY];
 
