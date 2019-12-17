@@ -6,9 +6,9 @@ public class Level
 
     public TileMap TileMap { get; set; }
 
-    public List<Wave> Waves { get; set; }
+    public List<WaveView> Waves { get; set; }
 
     public int InitialCash { get; set; }
 
-    public float TimeToFirtsWave { get; set; }
+    public float InitialCountDown { get; set; }
 }

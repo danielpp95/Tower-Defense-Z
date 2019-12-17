@@ -26,10 +26,7 @@ public class TilemapController : MonoBehaviour
     {
         Camera.transform.position = new Vector3(sizeX * tileSize / 2, sizeX * tileSize, -sizeZ * 1.5f);
 
-        //this.tileMap = new TileMap(sizeX, sizeZ, (5, 5), (sizeX - 1, sizeZ - 1));
         this.tileMap = new TileMap(sizeX, sizeZ, (sizeX - 1, sizeZ - 1), (0, 0));
-
-        //this.tileMap = new TileMap(sizeX, sizeZ);
 
         DrawPoint = new Vector2Int(
             this.tileMap.startPoint.Item1,

@@ -2,7 +2,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class CreateLevelButton : MonoBehaviour
+public class UIView : MonoBehaviour
 {
     public GameObject Main;
     public GameObject Editor;
@@ -13,9 +13,7 @@ public class CreateLevelButton : MonoBehaviour
 
     public Text Title;
 
-    private int Cash = 0;
-    private int InitialCountDown = 0;
-    private string levelName = string.Empty;
+    public Level Level = new Level();
 
     private void Awake()
     {
@@ -37,19 +35,29 @@ public class CreateLevelButton : MonoBehaviour
         this.DisableViewsExcept(this.WaveEditor, "Configure Waves");
     }
 
-    public void EditCash(string text)
+    public void SetCash(string text)
     {
-        this.Cash = int.Parse(text);
+        if (text == string.Empty)
+        {
+            text = "0";
+        }
+
+        this.Level.InitialCash = int.Parse(text);
     }
 
-    public void EditInitialCountdown(string text)
+    public void SetInitialCountdown(string text)
     {
-        this.InitialCountDown = int.Parse(text);
+        if (text == string.Empty)
+        {
+            text = "0";
+        }
+
+        this.Level.InitialCountDown = int.Parse(text);
     }
 
-    public void EditName(string text)
+    public void SetName(string text)
     {
-        this.levelName = text;
+        this.Level.Name = text;
     }
 
     public void LoadMainScene()
@@ -59,15 +67,9 @@ public class CreateLevelButton : MonoBehaviour
 
     public void SaveLevel()
     {
-        var tileMap = GameObject.FindObjectOfType<TilemapController>().tileMap;
+        this.Level.TileMap = FindObjectOfType<TilemapController>().tileMap;
 
-        var level = new Level
-        {
-            InitialCash = this.Cash,
-            TileMap = tileMap,
-            TimeToFirtsWave = this.InitialCountDown,
-            Name = this.levelName,
-        };
+        // Todo: save level
     }
 
     private void DisableViewsExcept(GameObject except, string title = null, bool disableUI = false)

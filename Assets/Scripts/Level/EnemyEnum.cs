@@ -1,4 +1,5 @@
 ﻿public enum EnemyEnum
 {
-    Nappa = 0,
+    None = 0,
+    Nappa = 1,
 }
