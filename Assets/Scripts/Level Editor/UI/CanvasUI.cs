@@ -1,7 +1,5 @@
 ﻿namespace Assets.Scripts.LevelEditor.UI
 {
-
-    using System.Collections.Generic;
     using Assets.Scripts.Contracts;
     using Assets.Scripts.Engine;
     using Assets.Scripts.LevelEditor.LevelScene;
@@ -88,11 +86,12 @@
 
             // Todo: save new level
             // actual replace save file 
-            SaveEngine.SaveLevels(
-                new List<Level>
-                {
-                this.Level
-                });
+            SaveEngine.SaveNewLevel(this.Level);
+            //SaveEngine.SaveLevels(
+            //    new List<Level>
+            //    {
+            //    this.Level
+            //    });
         }
 
         private void DisableViewsExcept(GameObject except, string title = null, bool disableUI = false)

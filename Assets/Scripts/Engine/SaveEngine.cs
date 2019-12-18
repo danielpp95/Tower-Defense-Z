@@ -43,7 +43,11 @@
                 var bf = new BinaryFormatter();
                 var file = File.Open(SavePath(fileName), FileMode.Open);
 
-                return (T)bf.Deserialize(file);
+                var dataObject = (T)bf.Deserialize(file);
+
+                file.Close();
+
+                return dataObject;
             }
 
             return new T();

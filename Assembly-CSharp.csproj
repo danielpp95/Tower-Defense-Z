@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\Level Editor\Level Scene\RemoveButton.cs" />
     <Compile Include="Assets\Scripts\Level Editor\Level Scene\TilemapController.cs" />
     <Compile Include="Assets\Scripts\Level Editor\UI\CanvasUI.cs" />
+    <Compile Include="Assets\Scripts\Level Editor\UI\LevelEditorUI.cs" />
     <Compile Include="Assets\Scripts\Level Editor\UI\LevelsUI.cs" />
     <Compile Include="Assets\Scripts\Level Editor\UI\LevelUI.cs" />
     <Compile Include="Assets\Scripts\Level Editor\UI\WaveScrollView.cs" />

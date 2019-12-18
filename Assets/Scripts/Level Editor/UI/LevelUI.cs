@@ -1,30 +1,30 @@
 ﻿namespace Assets.Scripts.LevelEditor.UI
 {
+    using Assets.Scripts.Contracts;
     using UnityEngine;
     using UnityEngine.UI;
 
     public class LevelUI : MonoBehaviour
     {
-        public Button SelectLevelButton;
-
         public Text NameText;
         public Text CashText;
         public Text WaveText;
 
-        public string Name;
-        public string Cash;
-        public string Wave;
+        private Level level;
 
-        public void Initialize(string name, string cash, string waves)
+        public void Initialize(Level level)
         {
-            //SelectLevelButton.GetComponent<RectTransform>().anchorMin.Set(0, 1);
-            //SelectLevelButton.GetComponent<RectTransform>().anchorMax.Set(1, 1);
+            this.level = level;
 
-            //SelectLevelButton.GetComponent<RectTransform>().sizeDelta.Set(500, 40);
+            this.NameText.text = level.Name;
+            this.CashText.text = level.InitialCash.ToString();
+            this.WaveText.text = level.Waves.Count.ToString();
+        }
 
-            this.NameText.text = name;
-            this.CashText.text = cash;
-            this.WaveText.text = waves;
+        public void LoadLevel()
+        {
+            FindObjectOfType<CanvasUI>().ShowEditor();
+
         }
     }
 }

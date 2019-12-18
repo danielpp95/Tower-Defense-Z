@@ -21,6 +21,7 @@
         {
             this.RenderLevels();
         }
+
         // Update is called once per frame
         void Update()
         {
@@ -29,18 +30,21 @@
 
         private void RenderLevels()
         {
+            while (this.Container.transform.childCount > 0)
+            {
+                var child = this.Container.transform.GetChild(0);
+                child.transform.SetParent(null);
+                Destroy(child.gameObject);
+            }
+
             this.levels = SaveEngine.LoadLevels();
 
             foreach (var level in this.levels)
             {
-                var levelButton = Instantiate(LevelPrefab);
-                levelButton.transform.SetParent(this.Container.transform);
+                var levelButton = Instantiate(LevelPrefab, this.Container.transform);
 
                 var levelScript = levelButton.GetComponent<LevelUI>();
-                levelScript.Initialize(
-                    "level.Name",
-                    "level.InitialCash.ToString()",
-                    level.Waves.Count.ToString() ?? "Error");
+                levelScript.Initialize(level);
             }
         }
     }
