@@ -79,7 +79,7 @@
     <Compile Include="Assets\Scripts\Level Editor\UI\LevelsUI.cs" />
     <Compile Include="Assets\Scripts\Level Editor\UI\LevelUI.cs" />
     <Compile Include="Assets\Scripts\Level Editor\UI\WaveScrollView.cs" />
-    <Compile Include="Assets\Scripts\Level Editor\UI\WaveView.cs" />
+    <Compile Include="Assets\Scripts\Level Editor\UI\WaveUI.cs" />
     <Compile Include="Assets\Scripts\Towers\Bullet.cs" />
     <Compile Include="Assets\Scripts\Towers\GokuSSJ3.cs" />
     <Compile Include="Assets\Scripts\Towers\ShootPoint.cs" />

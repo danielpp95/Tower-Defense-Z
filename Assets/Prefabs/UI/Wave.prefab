@@ -1918,7 +1918,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyDropdown: {fileID: 8421573596570176940}
-  Enemy: 0
+  LevelInput: {fileID: 8421573597479234087}
+  QuantityInput: {fileID: 8421573596419240470}
+  InitialCountDownInput: {fileID: 8421573596736684257}
 --- !u!114 &5033318433420832409
 MonoBehaviour:
   m_ObjectHideFlags: 0

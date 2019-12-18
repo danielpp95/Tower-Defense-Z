@@ -23,8 +23,11 @@
 
         public void LoadLevel()
         {
-            FindObjectOfType<CanvasUI>().ShowEditor();
+            var canvasUI = FindObjectOfType<CanvasUI>();
+            canvasUI.ShowEditor();
+            canvasUI.Level.Waves = this.level.Waves;
 
+            FindObjectOfType<LevelEditorUI>().Initialize(this.level);
         }
     }
 }

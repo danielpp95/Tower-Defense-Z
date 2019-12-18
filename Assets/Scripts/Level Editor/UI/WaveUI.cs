@@ -8,36 +8,56 @@
     using UnityEngine.UI;
 
     [Serializable]
-    public class WaveView : MonoBehaviour
+    public class WaveUI : MonoBehaviour
     {
         public Dropdown EnemyDropdown;
+        public InputField LevelInput;
+        public InputField QuantityInput;
+        public InputField InitialCountDownInput;
+
+        private string DefaultCharacterText = "-- Character";
 
         public Wave Wave { get; private set; }
 
-        private void Start()
+        public void Initialize(Wave wave)
         {
             InitializeEnemyDropdown();
 
-            this.Wave = new Wave
-            {
-                Level = 0,
-                Quantity = 0,
-                InitialCountdown = 0,
-            };
+            this.Wave = wave == null ? new Wave() : wave;
+
+            this.EnemyDropdown.value = (int)this.Wave.Enemy;
+            this.LevelInput.text = this.Wave.Level.ToString();
+            this.QuantityInput.text = this.Wave.Quantity.ToString();
+            this.InitialCountDownInput.text = this.Wave.InitialCountdown.ToString();
         }
 
         public void SetLevel(string text)
         {
+            if (text == string.Empty)
+            {
+                text = "0";
+            }
+
             this.Wave.Level = int.Parse(text);
         }
 
         public void SetQuantity(string text)
         {
+            if (text == string.Empty)
+            {
+                text = "0";
+            }
+
             this.Wave.Quantity = int.Parse(text);
         }
 
         public void SetInitialCountDown(string text)
         {
+            if (text == string.Empty)
+            {
+                text = "0";
+            }
+
             this.Wave.InitialCountdown = float.Parse(text);
         }
 
@@ -55,12 +75,11 @@
 
             optionData.Add(new Dropdown.OptionData
             {
-                text = "-- Character"
+                text = DefaultCharacterText
             });
 
             var enumList = Enum.GetNames(typeof(EnemyEnum))
             .Where(x => x != "None");
-            //.ToList()
 
             foreach (var enemy in enumList)
             {

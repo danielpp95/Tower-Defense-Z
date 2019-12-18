@@ -1,8 +1,7 @@
 ﻿namespace Assets.Scripts.LevelEditor.UI
 {
+    using System.Collections.Generic;
     using Assets.Scripts.Contracts;
-    using Assets.Scripts.Engine;
-    using Assets.Scripts.LevelEditor.LevelScene;
     using UnityEngine;
     using UnityEngine.SceneManagement;
     using UnityEngine.UI;
@@ -28,6 +27,7 @@
 
         private void Start()
         {
+            this.Level = new Level { Waves = new List<Wave>() };
         }
 
         public void ShowEditor()
@@ -48,50 +48,12 @@
         public void WaveManager()
         {
             this.DisableViewsExcept(this.WaveEditor, "Configure Waves");
-        }
-
-        public void SetCash(string text)
-        {
-            if (text == string.Empty)
-            {
-                text = "0";
-            }
-
-            this.Level.InitialCash = int.Parse(text);
-        }
-
-        public void SetInitialCountdown(string text)
-        {
-            if (text == string.Empty)
-            {
-                text = "0";
-            }
-
-            this.Level.InitialCountDown = float.Parse(text);
-        }
-
-        public void SetName(string text)
-        {
-            this.Level.Name = text;
+            FindObjectOfType<WaveScrollView>().LoadWaves(this.Level.Waves);
         }
 
         public void LoadMainScene()
         {
             SceneManager.LoadScene("MainScene");
-        }
-
-        public void SaveLevel()
-        {
-            this.Level.TileMap = FindObjectOfType<TilemapController>().tileMap;
-
-            // Todo: save new level
-            // actual replace save file 
-            SaveEngine.SaveNewLevel(this.Level);
-            //SaveEngine.SaveLevels(
-            //    new List<Level>
-            //    {
-            //    this.Level
-            //    });
         }
 
         private void DisableViewsExcept(GameObject except, string title = null, bool disableUI = false)

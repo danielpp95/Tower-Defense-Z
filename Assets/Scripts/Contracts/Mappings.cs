@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     public static class Mappings
     {
-        public static Contracts.Wave Map(this Scripts.LevelEditor.UI.WaveView waveView)
+        public static Contracts.Wave Map(this Scripts.LevelEditor.UI.WaveUI waveView)
         {
             return new Contracts.Wave
             {
@@ -15,7 +15,7 @@
             };
         }
 
-        public static List<Contracts.Wave> Map(this List<Scripts.LevelEditor.UI.WaveView> waveViews)
+        public static List<Contracts.Wave> Map(this List<Scripts.LevelEditor.UI.WaveUI> waveViews)
         {
             var returnList = new List<Contracts.Wave>();
 

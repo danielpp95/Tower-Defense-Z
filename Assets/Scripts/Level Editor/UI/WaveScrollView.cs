@@ -20,15 +20,24 @@
         void Start()
         {
             this.waves = new List<GameObject>();
-            this.InstantiateAddButton();
+            if (!this.waves.Any())
+            {
+                this.InstantiateAddButton();
+            }
         }
 
         public void AddWave()
         {
-            var wave = Instantiate(Wave);
-            wave.transform.SetParent(ScrollContainer.transform);
+            this.AddWave(null);
+        }
 
-            this.waves.Add(wave);
+        public void AddWave(Wave wave)
+        {
+            var waveGO = Instantiate(Wave);
+            waveGO.transform.SetParent(ScrollContainer.transform);
+            this.waves.Add(waveGO);
+
+            waveGO.GetComponent<WaveUI>().Initialize(wave);
 
             this.InstantiateAddButton();
         }
@@ -47,11 +56,11 @@
         {
             var errors = new List<string>();
 
-            var waveList = new List<WaveView>();
+            var waveList = new List<WaveUI>();
 
             foreach (var wv in this.waves)
             {
-                waveList.Add(wv.GetComponent<WaveView>());
+                waveList.Add(wv.GetComponent<WaveUI>());
             }
 
             errors = this.LogError(
@@ -83,9 +92,11 @@
                 return;
             }
 
-            var uiView = FindObjectOfType<CanvasUI>();
-            uiView.Level.Waves = waveList.Map();
-            uiView.ShowEditor();
+            var canvasUI = FindObjectOfType<CanvasUI>();
+            canvasUI.ShowEditor();
+
+            var levelEditorUI = FindObjectOfType<LevelEditorUI>();
+            levelEditorUI.Level.Waves = waveList.Map();
         }
 
         public void Back()
@@ -95,7 +106,17 @@
             FindObjectOfType<CanvasUI>().ShowEditor();
         }
 
-        private List<string> LogError(Func<WaveView, bool> condition, string errorMessage, List<WaveView> waveViews, List<string> errorList)
+        public void LoadWaves(List<Wave> waveList)
+        {
+            foreach (var w in waveList)
+            {
+                this.AddWave(w);
+            }
+
+            this.InstantiateAddButton();
+        }
+
+        private List<string> LogError(Func<WaveUI, bool> condition, string errorMessage, List<WaveUI> waveViews, List<string> errorList)
         {
             if (waveViews.Any(condition))
             {

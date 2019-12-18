@@ -60,7 +60,7 @@
             bf.Serialize(file, saveData);
             file.Close();
 
-            Debug.Log("Game Saved");
+            Debug.Log("Data Saved");
         }
     }
 }
