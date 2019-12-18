@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\GameManager.cs" />
     <Compile Include="Assets\Scripts\Contracts\EnemyEnum.cs" />
     <Compile Include="Assets\Scripts\Contracts\Level.cs" />
     <Compile Include="Assets\Scripts\Contracts\LevelSerializable.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Assets\Scripts\Contracts\TileMapSerializable.cs" />
     <Compile Include="Assets\Scripts\Contracts\Wave.cs" />
     <Compile Include="Assets\Scripts\Enemies\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Enemies\Spawner.cs" />
     <Compile Include="Assets\Scripts\Engine\SaveEngine.cs" />
     <Compile Include="Assets\Scripts\Helpers\Helpers.cs" />
     <Compile Include="Assets\Scripts\Level Editor\Level Scene\PlusButton.cs" />

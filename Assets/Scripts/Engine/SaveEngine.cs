@@ -12,17 +12,6 @@
 
         public static List<Level> LoadLevels()
         {
-            //var levels = Load<List<LevelSerializable>>(LevelsFileName).Map();
-            //foreach (var level in levels.Map())
-            //{
-            //    Debug.Log("----Level----");
-            //    foreach (var item in level.TileMap.MapData)
-            //    {
-            //        Debug.Log(item);
-            //    }
-            //}
-            //return levels;
-
             return Load<List<LevelSerializable>>(LevelsFileName).Map();
         }
 

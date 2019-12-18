@@ -44,8 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c70241fed9dd474458522c6d774681e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  lifePoint: 10
+  speed: 20
 --- !u!1001 &2220682394482050519
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56,7 +55,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 683097e8d44cf6c4cb09832536c90a69,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: -5.8
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 683097e8d44cf6c4cb09832536c90a69,
         type: 3}
@@ -66,7 +65,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 683097e8d44cf6c4cb09832536c90a69,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 683097e8d44cf6c4cb09832536c90a69,
         type: 3}
@@ -111,17 +110,17 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 683097e8d44cf6c4cb09832536c90a69,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 683097e8d44cf6c4cb09832536c90a69,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 683097e8d44cf6c4cb09832536c90a69,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 683097e8d44cf6c4cb09832536c90a69,
         type: 3}

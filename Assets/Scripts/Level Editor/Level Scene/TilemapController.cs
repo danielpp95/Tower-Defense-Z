@@ -2,7 +2,6 @@
 {
     using System.Linq;
     using Assets.Scripts.Contracts;
-    using Assets.Scripts.Helpers;
     using Assets.Scripts.LevelEditor.UI;
     using UnityEngine;
 
@@ -11,6 +10,8 @@
         private int sizeX;
         private int sizeZ;
         public int tileSize = 10;
+
+        public bool EditorMode = true;
 
         public GameObject SpawnObject;
         public GameObject EndObject;
@@ -25,12 +26,9 @@
 
         private Vector2Int DrawPoint;
 
-        private Helpers Helpers;
-
         // Start is called before the first frame update
         void Start()
         {
-            this.Helpers = FindObjectOfType<Helpers>();
         }
 
         public void Initialize(TileMap tileMap)
@@ -45,13 +43,12 @@
             this.sizeX = tileMap.SizeX;
             this.sizeZ = tileMap.SizeY;
 
-
-
             DrawPoint = tileMap.FollowingPath.Any() ?
                 tileMap.FollowingPath.Last() :
                 new Vector2Int(this.tileMap.StartPoint.x, this.tileMap.StartPoint.y);
 
             Camera.transform.position = new Vector3(sizeX * tileSize / 2, sizeX * tileSize, -sizeZ * 1.5f);
+            Camera.transform.rotation = Quaternion.Euler(60f, 0, 0);
 
             BuildTerrain();
 
@@ -62,7 +59,7 @@
 
         private void BuildTerrain()
         {
-            this.Helpers.RemoveChildrens(this.gameObject);
+            this.RemoveChildrens(this.gameObject);
 
             for (int x = 0; x < sizeX; x++)
             {
@@ -103,44 +100,47 @@
 
         private void AddBuildButton()
         {
-            // left
-            this.InstantiatePlusButton(
-                DrawPoint.x > 0 && tileMap.GetTileAt(DrawPoint.x - 1, DrawPoint.y) == (int)TileEnum.Ground,
-                (DrawPoint.x - 1) * this.tileSize,
-                DrawPoint.y * this.tileSize);
-
-            // right
-            this.InstantiatePlusButton(
-                DrawPoint.x < this.tileMap.SizeX - 1 && tileMap.GetTileAt(DrawPoint.x + 1, DrawPoint.y) == (int)TileEnum.Ground,
-                (DrawPoint.x + 1) * this.tileSize,
-                DrawPoint.y * this.tileSize);
-
-
-            // top
-            this.InstantiatePlusButton(
-                DrawPoint.y < this.tileMap.SizeY - 1 && this.tileMap.GetTileAt(DrawPoint.x, DrawPoint.y + 1) == (int)TileEnum.Ground,
-                DrawPoint.x * this.tileSize,
-                (DrawPoint.y + 1) * this.tileSize);
-
-            // bottom
-            this.InstantiatePlusButton(
-                (DrawPoint.y > 0 && this.tileMap.GetTileAt(DrawPoint.x, DrawPoint.y - 1) == (int)TileEnum.Ground),
-                DrawPoint.x * this.tileSize,
-                (DrawPoint.y - 1) * this.tileSize);
-
-            // delete
-            if (DrawPoint.x != this.tileMap.StartPoint.x ||
-                DrawPoint.y != this.tileMap.StartPoint.y)
+            if (this.EditorMode)
             {
-                var position = new Vector3(
-                    this.DrawPoint.x * this.tileSize,
-                    0,
-                    this.DrawPoint.y * this.tileSize);
+                // left
+                this.InstantiatePlusButton(
+                    DrawPoint.x > 0 && tileMap.GetTileAt(DrawPoint.x - 1, DrawPoint.y) == (int)TileEnum.Ground,
+                    (DrawPoint.x - 1) * this.tileSize,
+                    DrawPoint.y * this.tileSize);
 
-                var removebutton = Instantiate(RemoveButton, position, Quaternion.identity, this.transform);
-                var button = removebutton.GetComponent<RemoveButton>();
-                button.x = this.DrawPoint.x;
-                button.z = this.DrawPoint.y;
+                // right
+                this.InstantiatePlusButton(
+                    DrawPoint.x < this.tileMap.SizeX - 1 && tileMap.GetTileAt(DrawPoint.x + 1, DrawPoint.y) == (int)TileEnum.Ground,
+                    (DrawPoint.x + 1) * this.tileSize,
+                    DrawPoint.y * this.tileSize);
+
+
+                // top
+                this.InstantiatePlusButton(
+                    DrawPoint.y < this.tileMap.SizeY - 1 && this.tileMap.GetTileAt(DrawPoint.x, DrawPoint.y + 1) == (int)TileEnum.Ground,
+                    DrawPoint.x * this.tileSize,
+                    (DrawPoint.y + 1) * this.tileSize);
+
+                // bottom
+                this.InstantiatePlusButton(
+                    (DrawPoint.y > 0 && this.tileMap.GetTileAt(DrawPoint.x, DrawPoint.y - 1) == (int)TileEnum.Ground),
+                    DrawPoint.x * this.tileSize,
+                    (DrawPoint.y - 1) * this.tileSize);
+
+                // delete
+                if (DrawPoint.x != this.tileMap.StartPoint.x ||
+                    DrawPoint.y != this.tileMap.StartPoint.y)
+                {
+                    var position = new Vector3(
+                        this.DrawPoint.x * this.tileSize,
+                        0,
+                        this.DrawPoint.y * this.tileSize);
+
+                    var removebutton = Instantiate(RemoveButton, position, Quaternion.identity, this.transform);
+                    var button = removebutton.GetComponent<RemoveButton>();
+                    button.x = this.DrawPoint.x;
+                    button.z = this.DrawPoint.y;
+                }
             }
         }
 
@@ -173,7 +173,7 @@
             this.tileMap.FollowingPath.RemoveAt(
                 this.tileMap.FollowingPath.Count - 1);
 
-            var point = this.tileMap.FollowingPath[this.tileMap.FollowingPath.Count - 1];
+            var point = this.tileMap.FollowingPath.Last();
 
             this.DrawPoint = new Vector2Int(point.x, point.y);
 
@@ -198,30 +198,42 @@
 
         public void EnableSaveButton()
         {
-            var enableButton = false;
+            if (this.EditorMode)
+            {
+                var enableButton = false;
 
-            if (DrawPoint.x == this.tileMap.EndPoint.x &&
-                DrawPoint.y == this.tileMap.EndPoint.y + 1)
-            {
-                enableButton = true;
-            }
-            if (DrawPoint.x == this.tileMap.EndPoint.x &&
-                DrawPoint.y == this.tileMap.EndPoint.y - 1)
-            {
-                enableButton = true;
-            }
-            if (DrawPoint.x == this.tileMap.EndPoint.x + 1 &&
-                DrawPoint.y == this.tileMap.EndPoint.y)
-            {
-                enableButton = true;
-            }
-            if (DrawPoint.x == this.tileMap.EndPoint.x - 1 &&
-                DrawPoint.y == this.tileMap.EndPoint.y)
-            {
-                enableButton = true;
-            }
+                if (DrawPoint.x == this.tileMap.EndPoint.x &&
+                    DrawPoint.y == this.tileMap.EndPoint.y + 1)
+                {
+                    enableButton = true;
+                }
+                if (DrawPoint.x == this.tileMap.EndPoint.x &&
+                    DrawPoint.y == this.tileMap.EndPoint.y - 1)
+                {
+                    enableButton = true;
+                }
+                if (DrawPoint.x == this.tileMap.EndPoint.x + 1 &&
+                    DrawPoint.y == this.tileMap.EndPoint.y)
+                {
+                    enableButton = true;
+                }
+                if (DrawPoint.x == this.tileMap.EndPoint.x - 1 &&
+                    DrawPoint.y == this.tileMap.EndPoint.y)
+                {
+                    enableButton = true;
+                }
 
-            FindObjectOfType<SceneUI>().Savebutton.interactable = enableButton;
+                FindObjectOfType<SceneUI>().Savebutton.interactable = enableButton;
+            }
+        }
+        private void RemoveChildrens(GameObject go)
+        {
+            while (go.transform.childCount > 0)
+            {
+                var child = go.transform.GetChild(0);
+                child.transform.SetParent(null);
+                Destroy(child.gameObject);
+            }
         }
     }
 }

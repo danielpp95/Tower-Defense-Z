@@ -1,6 +1,5 @@
 ﻿namespace Assets.Scripts.Towers
 {
-    using Assets.Scripts.Enemies;
     using UnityEngine;
 
     public class Bullet : MonoBehaviour
@@ -46,25 +45,25 @@
 
         private void HitEnemy()
         {
-            if (this.radius == 0)
-            {
-                target.GetComponent<Enemy>().TakeDamage(this.damage);
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                Collider[] cols = Physics.OverlapSphere(transform.position, radius);
+            //if (this.radius == 0)
+            //{
+            //    target.GetComponent<Enemy>().TakeDamage(this.damage);
+            //    Destroy(this.gameObject);
+            //}
+            //else
+            //{
+            //    Collider[] cols = Physics.OverlapSphere(transform.position, radius);
 
-                foreach (Collider c in cols)
-                {
-                    Enemy e = c.GetComponent<Enemy>();
-                    if (e != null)
-                    {
-                        // TODO: You COULD do a falloff of damage based on distance, but that's rare for TD games
-                        e.GetComponent<Enemy>().TakeDamage(damage);
-                    }
-                }
-            }
+            //    foreach (Collider c in cols)
+            //    {
+            //        Enemy e = c.GetComponent<Enemy>();
+            //        if (e != null)
+            //        {
+            //            // TODO: You COULD do a falloff of damage based on distance, but that's rare for TD games
+            //            e.GetComponent<Enemy>().TakeDamage(damage);
+            //        }
+            //    }
+            //}
         }
     }
 }
