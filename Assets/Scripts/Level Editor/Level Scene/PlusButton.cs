@@ -1,30 +1,34 @@
-﻿using UnityEngine;
-
-public class PlusButton : MonoBehaviour
+﻿namespace Assets.Scripts.LevelEditor.LevelScene
 {
-    public int x;
-    public int z;
+    using Assets.Scripts.Contracts;
+    using UnityEngine;
 
-    public GameObject Path;
-
-    public void AddPath()
+    public class PlusButton : MonoBehaviour
     {
-        var tilemapController = GameObject.FindObjectOfType<TilemapController>();
-        tilemapController.tileMap.mapData[x, z] = (int)TileEnum.Path;
+        public int x;
+        public int z;
 
-        Destroy(GameObject.Find($"[{x}],[{z}]"));
+        public GameObject Path;
 
-        var position = new Vector3(x * 10, 0, z * 10);
+        public void AddPath()
+        {
+            var tilemapController = GameObject.FindObjectOfType<TilemapController>();
+            tilemapController.tileMap.MapData[x, z] = (int)TileEnum.Path;
 
-        var path = Instantiate(Path, position, new Quaternion());
-        path.transform.parent = this.transform.parent;
-        path.name = $"[{x}],[{z}]";
+            Destroy(GameObject.Find($"[{x}],[{z}]"));
 
-        tilemapController.SetDrawPoint(x, z);
-    }
+            var position = new Vector3(x * 10, 0, z * 10);
 
-    private void OnMouseDown()
-    {
-        this.AddPath();
+            var path = Instantiate(Path, position, new Quaternion());
+            path.transform.parent = this.transform.parent;
+            path.name = $"[{x}],[{z}]";
+
+            tilemapController.SetDrawPoint(x, z);
+        }
+
+        private void OnMouseDown()
+        {
+            this.AddPath();
+        }
     }
 }

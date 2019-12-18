@@ -63,21 +63,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Bullet.cs" />
-    <Compile Include="Assets\Scripts\Enemy.cs" />
-    <Compile Include="Assets\Scripts\GokuSSJ3.cs" />
-    <Compile Include="Assets\Scripts\Level Editor\EnemyEnum.cs" />
+    <Compile Include="Assets\Scripts\Contracts\EnemyEnum.cs" />
+    <Compile Include="Assets\Scripts\Contracts\Level.cs" />
+    <Compile Include="Assets\Scripts\Contracts\Mappings.cs" />
+    <Compile Include="Assets\Scripts\Contracts\TileEnum.cs" />
+    <Compile Include="Assets\Scripts\Contracts\TileMap.cs" />
+    <Compile Include="Assets\Scripts\Contracts\Wave.cs" />
+    <Compile Include="Assets\Scripts\Enemies\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Engine\SaveEngine.cs" />
     <Compile Include="Assets\Scripts\Level Editor\Level Scene\PlusButton.cs" />
     <Compile Include="Assets\Scripts\Level Editor\Level Scene\RemoveButton.cs" />
-    <Compile Include="Assets\Scripts\Level Editor\Level Scene\TileEnum.cs" />
-    <Compile Include="Assets\Scripts\Level Editor\Level Scene\TileMap.cs" />
     <Compile Include="Assets\Scripts\Level Editor\Level Scene\TilemapController.cs" />
-    <Compile Include="Assets\Scripts\Level Editor\Level.cs" />
-    <Compile Include="Assets\Scripts\Level Editor\UIView.cs" />
-    <Compile Include="Assets\Scripts\Level Editor\WaveScrollView.cs" />
-    <Compile Include="Assets\Scripts\Level Editor\WaveView.cs" />
-    <Compile Include="Assets\Scripts\ShootPoint.cs" />
-    <Compile Include="Assets\Scripts\Tower.cs" />
+    <Compile Include="Assets\Scripts\Level Editor\UI\CanvasUI.cs" />
+    <Compile Include="Assets\Scripts\Level Editor\UI\LevelsUI.cs" />
+    <Compile Include="Assets\Scripts\Level Editor\UI\LevelUI.cs" />
+    <Compile Include="Assets\Scripts\Level Editor\UI\WaveScrollView.cs" />
+    <Compile Include="Assets\Scripts\Level Editor\UI\WaveView.cs" />
+    <Compile Include="Assets\Scripts\Towers\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Towers\GokuSSJ3.cs" />
+    <Compile Include="Assets\Scripts\Towers\ShootPoint.cs" />
+    <Compile Include="Assets\Scripts\Towers\Tower.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Daniel/Documents/dev/Games/Tower Defense Z/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
