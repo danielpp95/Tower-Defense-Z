@@ -1,5 +1,6 @@
 ﻿namespace Assets.Scripts.LevelEditor.UI
 {
+    using System.Collections.Generic;
     using Assets.Scripts.Contracts;
     using Assets.Scripts.Engine;
     using Assets.Scripts.LevelEditor.LevelScene;
@@ -43,13 +44,15 @@
         {
             this.Level.TileMap = FindObjectOfType<TilemapController>().tileMap;
 
-            SaveEngine.SaveNewLevel(this.Level);
-            //SaveEngine.SaveLevels(new List<Level> { this.Level });
+            //SaveEngine.SaveNewLevel(this.Level);
+            SaveEngine.SaveLevels(new List<Level> { this.Level });
         }
 
         public void Initialize(Level level)
         {
             this.Level = level;
+
+            FindObjectOfType<CanvasUI>().Level = level;
 
             this.CashInput.text = level.InitialCash.ToString();
             this.NameInput.text = level.Name.ToString();

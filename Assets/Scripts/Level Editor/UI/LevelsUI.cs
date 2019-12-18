@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using Assets.Scripts.Contracts;
     using Assets.Scripts.Engine;
+    using Assets.Scripts.Helpers;
     using UnityEngine;
 
     public class LevelsUI : MonoBehaviour
@@ -12,9 +13,12 @@
 
         public List<Level> levels;
 
+        private Helpers Helpers;
+
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
+            this.Helpers = FindObjectOfType<Helpers>();
         }
 
         private void OnEnable()
@@ -30,12 +34,7 @@
 
         private void RenderLevels()
         {
-            while (this.Container.transform.childCount > 0)
-            {
-                var child = this.Container.transform.GetChild(0);
-                child.transform.SetParent(null);
-                Destroy(child.gameObject);
-            }
+            this.Helpers.RemoveChildrens(this.Container);
 
             this.levels = SaveEngine.LoadLevels();
 

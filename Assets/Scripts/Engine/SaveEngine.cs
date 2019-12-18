@@ -10,11 +10,20 @@
     {
         private static string LevelsFileName = "Levels";
 
-        private static List<Level> levels = new List<Level>();
-
         public static List<Level> LoadLevels()
         {
-            return Load<List<Level>>(LevelsFileName);
+            //var levels = Load<List<LevelSerializable>>(LevelsFileName).Map();
+            //foreach (var level in levels.Map())
+            //{
+            //    Debug.Log("----Level----");
+            //    foreach (var item in level.TileMap.MapData)
+            //    {
+            //        Debug.Log(item);
+            //    }
+            //}
+            //return levels;
+
+            return Load<List<LevelSerializable>>(LevelsFileName).Map();
         }
 
         public static void SaveNewLevel(Level level)
@@ -28,7 +37,7 @@
 
         public static void SaveLevels(List<Level> levels)
         {
-            SaveData(levels, LevelsFileName);
+            SaveData(levels.Map(), LevelsFileName);
         }
 
         private static string SavePath(string fileName)

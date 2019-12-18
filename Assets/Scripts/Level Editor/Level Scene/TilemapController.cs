@@ -1,12 +1,15 @@
 ﻿namespace Assets.Scripts.LevelEditor.LevelScene
 {
+    using System.Linq;
     using Assets.Scripts.Contracts;
+    using Assets.Scripts.Helpers;
+    using Assets.Scripts.LevelEditor.UI;
     using UnityEngine;
 
     public class TilemapController : MonoBehaviour
     {
-        public int sizeX = 100;
-        public int sizeZ = 50;
+        private int sizeX;
+        private int sizeZ;
         public int tileSize = 10;
 
         public GameObject SpawnObject;
@@ -22,25 +25,45 @@
 
         private Vector2Int DrawPoint;
 
+        private Helpers Helpers;
 
         // Start is called before the first frame update
         void Start()
         {
+            this.Helpers = FindObjectOfType<Helpers>();
+        }
+
+        public void Initialize(TileMap tileMap)
+        {
+            if (tileMap == null)
+            {
+                Debug.LogError("TileMap cannot be null");
+                return;
+            }
+
+            this.tileMap = tileMap;
+            this.sizeX = tileMap.SizeX;
+            this.sizeZ = tileMap.SizeY;
+
+
+
+            DrawPoint = tileMap.FollowingPath.Any() ?
+                tileMap.FollowingPath.Last() :
+                new Vector2Int(this.tileMap.StartPoint.x, this.tileMap.StartPoint.y);
+
             Camera.transform.position = new Vector3(sizeX * tileSize / 2, sizeX * tileSize, -sizeZ * 1.5f);
-
-            this.tileMap = new TileMap(sizeX, sizeZ, (sizeX - 1, sizeZ - 1), (0, 0));
-
-            DrawPoint = new Vector2Int(
-                this.tileMap.StartPoint.Item1,
-                this.tileMap.StartPoint.Item2);
 
             BuildTerrain();
 
             AddBuildButton();
+
+            this.EnableSaveButton();
         }
 
         private void BuildTerrain()
         {
+            this.Helpers.RemoveChildrens(this.gameObject);
+
             for (int x = 0; x < sizeX; x++)
             {
                 for (int z = 0; z < sizeZ; z++)
@@ -106,15 +129,15 @@
                 (DrawPoint.y - 1) * this.tileSize);
 
             // delete
-            if (DrawPoint.x != this.tileMap.StartPoint.Item1 ||
-                DrawPoint.y != this.tileMap.StartPoint.Item2)
+            if (DrawPoint.x != this.tileMap.StartPoint.x ||
+                DrawPoint.y != this.tileMap.StartPoint.y)
             {
                 var position = new Vector3(
                     this.DrawPoint.x * this.tileSize,
                     0,
                     this.DrawPoint.y * this.tileSize);
 
-                var removebutton = Instantiate(RemoveButton, position, Quaternion.identity);
+                var removebutton = Instantiate(RemoveButton, position, Quaternion.identity, this.transform);
                 var button = removebutton.GetComponent<RemoveButton>();
                 button.x = this.DrawPoint.x;
                 button.z = this.DrawPoint.y;
@@ -127,8 +150,7 @@
             {
                 var position = new Vector3(x, 0, z);
 
-                var buttonGO = Instantiate(AddButton, position, new Quaternion());
-                buttonGO.transform.parent = this.transform;
+                var buttonGO = Instantiate(AddButton, position, new Quaternion(), this.transform);
 
                 var button = buttonGO.GetComponent<PlusButton>();
                 button.x = x / tileSize;
@@ -140,7 +162,7 @@
         {
             this.DrawPoint = new Vector2Int(x, z);
 
-            this.tileMap.FollowingPath.Add((x, z));
+            this.tileMap.FollowingPath.Add(this.DrawPoint);
 
             this.RemoveButtons();
             this.AddBuildButton();
@@ -153,7 +175,7 @@
 
             var point = this.tileMap.FollowingPath[this.tileMap.FollowingPath.Count - 1];
 
-            this.DrawPoint = new Vector2Int(point.Item1, point.Item2);
+            this.DrawPoint = new Vector2Int(point.x, point.y);
 
             this.RemoveButtons();
             this.AddBuildButton();
@@ -172,6 +194,34 @@
             {
                 Destroy(button.gameObject);
             }
+        }
+
+        public void EnableSaveButton()
+        {
+            var enableButton = false;
+
+            if (DrawPoint.x == this.tileMap.EndPoint.x &&
+                DrawPoint.y == this.tileMap.EndPoint.y + 1)
+            {
+                enableButton = true;
+            }
+            if (DrawPoint.x == this.tileMap.EndPoint.x &&
+                DrawPoint.y == this.tileMap.EndPoint.y - 1)
+            {
+                enableButton = true;
+            }
+            if (DrawPoint.x == this.tileMap.EndPoint.x + 1 &&
+                DrawPoint.y == this.tileMap.EndPoint.y)
+            {
+                enableButton = true;
+            }
+            if (DrawPoint.x == this.tileMap.EndPoint.x - 1 &&
+                DrawPoint.y == this.tileMap.EndPoint.y)
+            {
+                enableButton = true;
+            }
+
+            FindObjectOfType<SceneUI>().Savebutton.interactable = enableButton;
         }
     }
 }

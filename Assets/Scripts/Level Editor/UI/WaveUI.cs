@@ -70,7 +70,6 @@
         {
             this.EnemyDropdown.ClearOptions();
 
-
             var optionData = new List<Dropdown.OptionData>();
 
             optionData.Add(new Dropdown.OptionData

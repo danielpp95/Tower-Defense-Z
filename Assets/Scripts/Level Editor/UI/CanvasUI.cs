@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Assets.Scripts.Contracts;
+    using Assets.Scripts.LevelEditor.LevelScene;
     using UnityEngine;
     using UnityEngine.SceneManagement;
     using UnityEngine.UI;
@@ -12,7 +13,7 @@
         public GameObject Editor;
         public GameObject WaveEditor;
         public GameObject LevelsUI;
-        public GameObject SceneEditor;
+        public GameObject SceneUI;
 
         public GameObject Background;
 
@@ -27,7 +28,7 @@
 
         private void Start()
         {
-            this.Level = new Level { Waves = new List<Wave>() };
+            this.Level = new Level { Waves = new List<Wave>(), TileMap = new TileMap(5, 3) };
         }
 
         public void ShowEditor()
@@ -42,7 +43,9 @@
 
         public void EditScene()
         {
-            this.DisableViewsExcept(this.SceneEditor, disableUI: true);
+            this.DisableViewsExcept(this.SceneUI, disableUI: true);
+
+            FindObjectOfType<TilemapController>().Initialize(this.Level.TileMap);
         }
 
         public void WaveManager()
@@ -62,6 +65,7 @@
             this.Editor.SetActive(false);
             this.WaveEditor.SetActive(false);
             this.LevelsUI.SetActive(false);
+            this.SceneUI.SetActive(false);
 
             this.Background.SetActive(!disableUI);
 

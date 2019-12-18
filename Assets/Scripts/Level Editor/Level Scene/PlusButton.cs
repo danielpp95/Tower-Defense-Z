@@ -29,6 +29,7 @@
         private void OnMouseDown()
         {
             this.AddPath();
+            FindObjectOfType<TilemapController>().EnableSaveButton();
         }
     }
 }

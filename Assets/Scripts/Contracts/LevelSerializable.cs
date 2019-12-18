@@ -1,12 +1,14 @@
 ﻿namespace Assets.Scripts.Contracts
 {
+    using System;
     using System.Collections.Generic;
 
-    public class Level
+    [Serializable]
+    public class LevelSerializable
     {
         public string Name { get; set; }
 
-        public TileMap TileMap { get; set; }
+        public TileMapSerializable TileMap { get; set; }
 
         public List<Wave> Waves { get; set; }
 

@@ -65,12 +65,15 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Contracts\EnemyEnum.cs" />
     <Compile Include="Assets\Scripts\Contracts\Level.cs" />
+    <Compile Include="Assets\Scripts\Contracts\LevelSerializable.cs" />
     <Compile Include="Assets\Scripts\Contracts\Mappings.cs" />
     <Compile Include="Assets\Scripts\Contracts\TileEnum.cs" />
     <Compile Include="Assets\Scripts\Contracts\TileMap.cs" />
+    <Compile Include="Assets\Scripts\Contracts\TileMapSerializable.cs" />
     <Compile Include="Assets\Scripts\Contracts\Wave.cs" />
     <Compile Include="Assets\Scripts\Enemies\Enemy.cs" />
     <Compile Include="Assets\Scripts\Engine\SaveEngine.cs" />
+    <Compile Include="Assets\Scripts\Helpers\Helpers.cs" />
     <Compile Include="Assets\Scripts\Level Editor\Level Scene\PlusButton.cs" />
     <Compile Include="Assets\Scripts\Level Editor\Level Scene\RemoveButton.cs" />
     <Compile Include="Assets\Scripts\Level Editor\Level Scene\TilemapController.cs" />
@@ -78,6 +81,7 @@
     <Compile Include="Assets\Scripts\Level Editor\UI\LevelEditorUI.cs" />
     <Compile Include="Assets\Scripts\Level Editor\UI\LevelsUI.cs" />
     <Compile Include="Assets\Scripts\Level Editor\UI\LevelUI.cs" />
+    <Compile Include="Assets\Scripts\Level Editor\UI\SceneUI.cs" />
     <Compile Include="Assets\Scripts\Level Editor\UI\WaveScrollView.cs" />
     <Compile Include="Assets\Scripts\Level Editor\UI\WaveUI.cs" />
     <Compile Include="Assets\Scripts\Towers\Bullet.cs" />

@@ -18,7 +18,8 @@
 
             this.NameText.text = level.Name;
             this.CashText.text = level.InitialCash.ToString();
-            this.WaveText.text = level.Waves.Count.ToString();
+
+            this.WaveText.text = level.Waves != null ? level.Waves.Count.ToString() : "0";
         }
 
         public void LoadLevel()
