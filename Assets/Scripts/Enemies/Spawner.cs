@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Assets.Scripts.Contracts;
+    using Assets.Scripts.Manager;
     using UnityEngine;
 
     public class Spawner : MonoBehaviour

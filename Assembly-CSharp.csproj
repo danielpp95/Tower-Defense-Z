@@ -63,8 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\GameManager.cs" />
-    <Compile Include="Assets\HitPoint.cs" />
     <Compile Include="Assets\Scripts\Contracts\EnemyEnum.cs" />
     <Compile Include="Assets\Scripts\Contracts\Level.cs" />
     <Compile Include="Assets\Scripts\Contracts\LevelSerializable.cs" />
@@ -74,6 +72,7 @@
     <Compile Include="Assets\Scripts\Contracts\TileMapSerializable.cs" />
     <Compile Include="Assets\Scripts\Contracts\Wave.cs" />
     <Compile Include="Assets\Scripts\Enemies\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Enemies\HitPoint.cs" />
     <Compile Include="Assets\Scripts\Enemies\Spawner.cs" />
     <Compile Include="Assets\Scripts\Engine\SaveEngine.cs" />
     <Compile Include="Assets\Scripts\Helpers\Helpers.cs" />
@@ -87,6 +86,8 @@
     <Compile Include="Assets\Scripts\Level Editor\UI\SceneUI.cs" />
     <Compile Include="Assets\Scripts\Level Editor\UI\WaveScrollView.cs" />
     <Compile Include="Assets\Scripts\Level Editor\UI\WaveUI.cs" />
+    <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Manager\TowerSpawner.cs" />
     <Compile Include="Assets\Scripts\Towers\Bullet.cs" />
     <Compile Include="Assets\Scripts\Towers\GokuSSJ3.cs" />
     <Compile Include="Assets\Scripts\Towers\ShootPoint.cs" />

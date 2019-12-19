@@ -1,5 +1,6 @@
 ﻿namespace Assets.Scripts.Towers
 {
+    using Assets.Scripts.Enemies;
     using UnityEngine;
 
     public abstract class Tower : MonoBehaviour
