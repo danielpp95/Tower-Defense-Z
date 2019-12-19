@@ -8,6 +8,7 @@
     public class Enemy : MonoBehaviour
     {
         public float speed = 5f;
+        public GameObject HitPoint;
 
         private Vector3 target;
 

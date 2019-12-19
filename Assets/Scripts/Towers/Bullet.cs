@@ -26,6 +26,11 @@
 
         private void FixedUpdate()
         {
+            if (this.target == null)
+            {
+                Destroy(this.gameObject);
+                return;
+            }
             Vector3 dir = this.target.position - this.transform.localPosition;
 
             if (dir.magnitude <= speed)

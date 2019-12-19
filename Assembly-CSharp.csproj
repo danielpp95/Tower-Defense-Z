@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\GameManager.cs" />
+    <Compile Include="Assets\HitPoint.cs" />
     <Compile Include="Assets\Scripts\Contracts\EnemyEnum.cs" />
     <Compile Include="Assets\Scripts\Contracts\Level.cs" />
     <Compile Include="Assets\Scripts\Contracts\LevelSerializable.cs" />
