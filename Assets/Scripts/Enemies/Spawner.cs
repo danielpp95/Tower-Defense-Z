@@ -15,11 +15,14 @@
         private float countdown = 2f;
 
         private List<Wave> waves;
+        private GameManager gameManager;
+        private int actualWave = 0;
 
         // Start is called before the first frame update
         void Start()
         {
-            this.waves = FindObjectOfType<GameManager>().level.Waves;
+            this.gameManager = FindObjectOfType<GameManager>();
+            this.waves = this.gameManager.level.Waves;
         }
 
         // Update is called once per frame
@@ -36,6 +39,8 @@
 
         private IEnumerator SpawnWave(Wave wave)
         {
+            this.actualWave++;
+            this.gameManager.SetActualWave(this.actualWave);
             Debug.Log("Wave incoming");
             for (int i = 0; i < wave.Quantity; i++)
             {
