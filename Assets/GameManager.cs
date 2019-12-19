@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     public Text WavesText;
     public Text LivesText;
     public Text CashText;
+    public Text TimerText;
+
+    public GameObject TimerContainer;
 
     private int lives = 7;
     private int cash;
@@ -68,5 +71,10 @@ public class GameManager : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void SetTimer(int seconds)
+    {
+        this.TimerText.text = $"{seconds}s";
     }
 }

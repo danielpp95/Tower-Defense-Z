@@ -10,13 +10,12 @@
     {
         public GameObject EnemyPrefab;
 
-        public float TimeBetweenWaves = 5f;
+        private float TimeBetweenWaves = 8f;
 
         private float countdown = 2f;
-
+        private int actualWave = 0;
         private List<Wave> waves;
         private GameManager gameManager;
-        private int actualWave = 0;
 
         // Start is called before the first frame update
         void Start()
@@ -34,7 +33,9 @@
                 countdown = TimeBetweenWaves;
             }
 
-            countdown -= Time.deltaTime;
+            this.SetTimer();
+
+            this.countdown -= Time.deltaTime;
         }
 
         private IEnumerator SpawnWave(Wave wave)
@@ -58,6 +59,19 @@
                 StartCoroutine(this.SpawnWave(wave));
 
                 this.waves.Remove(this.waves.First());
+            }
+        }
+
+        private void SetTimer()
+        {
+            if (this.countdown <= 6f && this.countdown > 0f)
+            {
+                this.gameManager.SetTimer((int)this.countdown);
+                this.gameManager.TimerContainer.SetActive(true);
+            }
+            else
+            {
+                this.gameManager.TimerContainer.SetActive(false);
             }
         }
     }

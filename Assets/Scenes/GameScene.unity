@@ -266,6 +266,8 @@ MonoBehaviour:
   WavesText: {fileID: 2062262622}
   LivesText: {fileID: 666923464}
   CashText: {fileID: 1672972751}
+  TimerText: {fileID: 1292996945}
+  TimerContainer: {fileID: 1523346315}
 --- !u!114 &353842302
 MonoBehaviour:
   m_ObjectHideFlags: 0
