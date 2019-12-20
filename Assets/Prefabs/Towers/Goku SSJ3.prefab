@@ -83,6 +83,7 @@ MonoBehaviour:
   Radius: 0
   Range: 15
   BulletSpeed: 1
+  RotationSpeed: 10
 --- !u!1 &6349074007335584939
 GameObject:
   m_ObjectHideFlags: 0

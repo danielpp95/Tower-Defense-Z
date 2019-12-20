@@ -12,8 +12,10 @@
         public float Range = 10f;
         public float BulletSpeed = 1f;
 
-        private HitPoint enemy;
-        private Vector3 enemyDirection;
+        public float RotationSpeed = 10f;
+
+        private HitPoint target;
+        private Vector3 targetDirection;
 
         protected float fireCooldown = 0.5f;
         protected float fireCooldownLeft = 0;
@@ -27,52 +29,60 @@
         // Update is called once per frame
         void Update()
         {
-            this.FindEnemy();
+            if (target == null)
+            {
+                FindTarget();
+            }
+
+            if (this.target != null)
+            {
+                this.LookAtTarget();
+                this.ShootAt(this.target);
+            }
         }
 
-        private void FindEnemy()
+        private void FindTarget()
         {
-            if (this.enemy == null)
+            if (this.target == null)
             {
                 var enemies = GameObject.FindObjectsOfType<HitPoint>();
 
-                var nearestEnemy = (HitPoint)default;
+                var nearestTarget = (HitPoint)default;
 
                 float dist = Mathf.Infinity;
 
                 foreach (var e in enemies)
                 {
                     float d = Vector3.Distance(this.transform.position, e.transform.position);
-                    if (nearestEnemy == null || d < dist)
+                    if (nearestTarget == null || d < dist)
                     {
-                        nearestEnemy = e;
+                        nearestTarget = e;
                         dist = d;
                     }
                 }
 
-                this.enemy = nearestEnemy;
-            }
-
-            if (this.enemy != null)
-            {
-                this.LookAtEnemy();
-                this.ShootAt(this.enemy);
+                this.target = nearestTarget;
             }
         }
 
-        private void LookAtEnemy()
+        private void LookAtTarget()
         {
-            this.enemyDirection = this.enemy.transform.position - this.transform.position;
+            this.targetDirection = this.target.transform.position - this.transform.position;
 
-            Quaternion lookRot = Quaternion.LookRotation(this.enemyDirection); ;
+            var lookRotation = Quaternion.LookRotation(this.targetDirection);
 
-            this.RotationPart.transform.rotation = Quaternion.Euler(0, lookRot.eulerAngles.y, 0);
+            var rotation = Quaternion.Lerp(
+                this.RotationPart.transform.rotation,
+                lookRotation,
+                Time.deltaTime * this.RotationSpeed).eulerAngles;
+
+            this.RotationPart.transform.rotation = Quaternion.Euler(0, rotation.y, 0);
         }
 
         protected void ShootAt(HitPoint enemy)
         {
             fireCooldownLeft -= Time.deltaTime;
-            if (fireCooldownLeft <= 0 && this.enemyDirection.magnitude <= this.Range)
+            if (fireCooldownLeft <= 0 && this.targetDirection.magnitude <= this.Range)
             {
                 fireCooldownLeft = fireCooldown;
 
@@ -81,7 +91,7 @@
                 var bulletGO = Instantiate(this.BulletPrefab, shootPoint, Quaternion.identity);
 
                 var bullet = bulletGO.GetComponent<Bullet>();
-                bullet.target = this.enemy.transform;
+                bullet.target = this.target.transform;
                 bullet.damage = this.Damage;
                 bullet.radius = this.Radius;
                 bullet.speed = this.BulletSpeed;

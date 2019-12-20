@@ -95,6 +95,7 @@
     <Compile Include="Assets\Scripts\Manager\WarriorPrefabs.cs" />
     <Compile Include="Assets\Scripts\Manager\WarriorsPrefabBase.cs" />
     <Compile Include="Assets\Scripts\Towers\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Towers\Goku.cs" />
     <Compile Include="Assets\Scripts\Towers\GokuSSJ3.cs" />
     <Compile Include="Assets\Scripts\Towers\ShootPoint.cs" />
     <Compile Include="Assets\Scripts\Towers\Tower.cs" />
