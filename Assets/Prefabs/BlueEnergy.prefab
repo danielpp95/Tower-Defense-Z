@@ -109,3 +109,5 @@ MonoBehaviour:
   target: {fileID: 0}
   damage: 1
   radius: 0
+  ParticleEffect: {fileID: 6329045062787010461, guid: a7017a385af652d49adc1c916b787330,
+    type: 3}
