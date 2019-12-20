@@ -1,6 +1,7 @@
 ﻿namespace Assets.Scripts.Manager
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Assets.Scripts.Contracts;
     using Assets.Scripts.Engine;
     using UnityEngine;
@@ -18,14 +19,16 @@
         private GameManager gameManager;
         private HighlightedWarriors highlightedWarriorsPrefabs;
         private WarriorPrefabs warriorsPrefabs;
+        private GameObject previewPrefab;
 
         private int? selectedItem;
-
+        private Warrior selectedWarrior;
 
         // Start is called before the first frame update
         void Start()
         {
             this.selectedItem = null;
+            this.selectedWarrior = null;
             this.warriors = SaveEngine.LoadWarriors();
             this.gameManager = GetComponent<GameManager>();
             this.highlightedWarriorsPrefabs = GetComponent<HighlightedWarriors>();
@@ -57,11 +60,11 @@
 
         private void Selectitem(Warrior warrior, Button button)
         {
-            var preview = this.GetPreview();
-            if (preview != null)
+            if (this.previewPrefab != null)
             {
-                Destroy(preview);
+                Destroy(this.previewPrefab);
             }
+
             if (this.selectedItem == (int)warrior.Type)
             {
                 this.selectedItem = null;
@@ -73,7 +76,7 @@
 
             this.SetButtonColor(button, this.SelectedColor);
 
-            Debug.Log(warrior.Name);
+            this.selectedWarrior = warrior;
         }
 
         private void SetButtonColor(Button button, Color color)
@@ -96,19 +99,19 @@
 
         private void ShowPreviewPrefab()
         {
-            var preview = this.GetPreview();
+            //var preview = this.GetPreview();
 
             if (this.selectedItem != null && GetMouseOverTile() == TileEnum.Ground)
             {
-                if (preview == null)
+                if (this.previewPrefab == null)
                 {
-                    var go = Instantiate(this.GetPrefab(), this.GetMouseXYZPoint() * 10, Quaternion.identity, this.transform);
-                    go.name = "previewPrefab";
+                    this.previewPrefab = Instantiate(this.GetPrefab(), this.GetMouseXYZPoint() * 10, Quaternion.identity, this.transform);
+                    this.previewPrefab.name = "previewPrefab";
                 }
                 else
                 {
-                    preview.SetActive(true);
-                    preview.transform.position = (this.GetMouseXYZPoint() * 10);
+                    this.previewPrefab.SetActive(true);
+                    this.previewPrefab.transform.position = (this.GetMouseXYZPoint() * 10);
                 }
 
                 if (Input.GetMouseButtonDown(0))
@@ -118,9 +121,9 @@
             }
             else if (this.selectedItem != null && GetMouseOverTile() != TileEnum.Ground)
             {
-                if (preview != null)
+                if (this.previewPrefab != null)
                 {
-                    preview.gameObject.SetActive(false);
+                    this.previewPrefab.gameObject.SetActive(false);
                 }
             }
         }
@@ -183,7 +186,19 @@
 
         private void BuyTower()
         {
+            if (this.gameManager.SubtractCash(this.selectedWarrior.Cost))
+            {
+                var point = this.GetMouseXYZPoint();
+                this.gameManager.level.TileMap.MapData[(int)point.x, (int)point.z] = (int)TileEnum.Tower;
 
+                Instantiate(this.GetPrefab(false), point * 10, Quaternion.identity);
+
+                this.SetButtonColor(ButtonPrefablist.First(), Color.white);
+
+                this.selectedItem = null;
+                this.selectedWarrior = null;
+                Destroy(this.previewPrefab);
+            }
         }
     }
 }

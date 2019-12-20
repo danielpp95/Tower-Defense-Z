@@ -43,7 +43,7 @@
         {
             this.actualWave++;
             this.gameManager.SetActualWave(this.actualWave);
-            Debug.Log("Wave incoming");
+
             for (int i = 0; i < wave.Quantity; i++)
             {
                 Instantiate(this.EnemyPrefab);
