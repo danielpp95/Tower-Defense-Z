@@ -89,6 +89,8 @@
             {
                 if (fireCooldownLeft <= 0)
                 {
+                    this.GetComponentInChildren<Animator>().SetBool("Attack", true);
+
                     fireCooldownLeft = fireCooldown;
 
                     var shootPoint = this.transform.GetComponentInChildren<ShootPoint>().transform.position;

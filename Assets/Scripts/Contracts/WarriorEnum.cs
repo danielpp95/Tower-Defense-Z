@@ -6,6 +6,8 @@
     public enum WarriorEnum
     {
         Goku = 0,
-        GokuSSJ3 = 1,
+        GokuSSJ1 = 1,
+        GokuSSJ2 = 2,
+        GokuSSJ3 = 3,
     }
 }

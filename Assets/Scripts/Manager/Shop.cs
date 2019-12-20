@@ -170,10 +170,10 @@
         {
             switch ((WarriorEnum)this.selectedItem)
             {
-                case WarriorEnum.Goku:
-                    return hightlighted ? this.highlightedWarriorsPrefabs.Goku : this.warriorsPrefabs.Goku;
-                case WarriorEnum.GokuSSJ3:
-                    return hightlighted ? this.highlightedWarriorsPrefabs.GokuSSJ3 : this.warriorsPrefabs.GokuSSJ3;
+                //case WarriorEnum.Goku:
+                //    return hightlighted ? this.highlightedWarriorsPrefabs.Goku : this.warriorsPrefabs.Goku;
+                //case WarriorEnum.GokuSSJ3:
+                //    return hightlighted ? this.highlightedWarriorsPrefabs.GokuSSJ3 : this.warriorsPrefabs.GokuSSJ3;
                 default:
                     return null;
             }
