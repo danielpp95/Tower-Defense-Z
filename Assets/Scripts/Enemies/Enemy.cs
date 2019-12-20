@@ -55,5 +55,10 @@
             this.path.Add(tilemap.EndPoint);
 
         }
+
+        public void TakeDamage(float damage)
+        {
+
+        }
     }
 }

@@ -54,7 +54,9 @@
                 foreach (var e in enemies)
                 {
                     float d = Vector3.Distance(this.transform.position, e.transform.position);
-                    if (nearestTarget == null || d < dist)
+                    var magnitude = (e.transform.position - this.transform.position).magnitude;
+
+                    if ((nearestTarget == null || d < dist) && magnitude < this.Range)
                     {
                         nearestTarget = e;
                         dist = d;
@@ -82,19 +84,26 @@
         protected void ShootAt(HitPoint enemy)
         {
             fireCooldownLeft -= Time.deltaTime;
-            if (fireCooldownLeft <= 0 && this.targetDirection.magnitude <= this.Range)
+
+            if (this.targetDirection.magnitude <= this.Range)
             {
-                fireCooldownLeft = fireCooldown;
+                if (fireCooldownLeft <= 0)
+                {
+                    fireCooldownLeft = fireCooldown;
 
-                var shootPoint = this.transform.GetComponentInChildren<ShootPoint>().transform.position;
+                    var shootPoint = this.transform.GetComponentInChildren<ShootPoint>().transform.position;
 
-                var bulletGO = Instantiate(this.BulletPrefab, shootPoint, Quaternion.identity);
-
-                var bullet = bulletGO.GetComponent<Bullet>();
-                bullet.target = this.target.transform;
-                bullet.damage = this.Damage;
-                bullet.radius = this.Radius;
-                bullet.speed = this.BulletSpeed;
+                    var bulletGO = Instantiate(this.BulletPrefab, shootPoint, Quaternion.identity);
+                    var bullet = bulletGO.GetComponent<Bullet>();
+                    bullet.target = this.target.transform;
+                    bullet.damage = this.Damage;
+                    bullet.radius = this.Radius;
+                    bullet.speed = this.BulletSpeed;
+                }
+            }
+            else
+            {
+                this.target = null;
             }
         }
 

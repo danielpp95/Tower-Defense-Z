@@ -373,7 +373,7 @@ MonoBehaviour:
     type: 3}
   WarriorsContainer: {fileID: 1351708783}
   SelectedColor: {r: 0.98039216, g: 0.78431374, b: 0.5294118, a: 1}
-  PreviewPrefab: {fileID: 0}
+  ButtonPrefablist: []
 --- !u!114 &353842304
 MonoBehaviour:
   m_ObjectHideFlags: 0

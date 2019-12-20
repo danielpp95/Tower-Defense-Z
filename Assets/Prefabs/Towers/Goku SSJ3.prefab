@@ -81,7 +81,7 @@ MonoBehaviour:
   RotationPart: {fileID: 1188767540}
   Damage: 1
   Radius: 0
-  Range: 15
+  Range: 18
   BulletSpeed: 1
   RotationSpeed: 10
 --- !u!1 &6349074007335584939
