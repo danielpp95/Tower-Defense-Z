@@ -9,6 +9,7 @@
     public static class SaveEngine
     {
         private static string LevelsFileName = "Levels";
+        private static string WarriorsFileName = "Warriors";
 
         public static List<Level> LoadLevels()
         {
@@ -27,6 +28,16 @@
         public static void SaveLevels(List<Level> levels)
         {
             SaveData(levels.Map(), LevelsFileName);
+        }
+
+        public static void SaveWarriors(List<Warrior> warriors)
+        {
+            SaveData(warriors, WarriorsFileName);
+        }
+
+        public static List<Warrior> LoadWarriors()
+        {
+            return Load<List<Warrior>>(WarriorsFileName);
         }
 
         private static string SavePath(string fileName)

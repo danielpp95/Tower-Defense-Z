@@ -7,5 +7,6 @@
         Path = 2,
         Spawn = 3,
         End = 4,
+        Tower = 5,
     }
 }

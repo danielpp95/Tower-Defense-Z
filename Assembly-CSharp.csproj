@@ -70,10 +70,13 @@
     <Compile Include="Assets\Scripts\Contracts\TileEnum.cs" />
     <Compile Include="Assets\Scripts\Contracts\TileMap.cs" />
     <Compile Include="Assets\Scripts\Contracts\TileMapSerializable.cs" />
+    <Compile Include="Assets\Scripts\Contracts\Warrior.cs" />
+    <Compile Include="Assets\Scripts\Contracts\WarriorEnum.cs" />
     <Compile Include="Assets\Scripts\Contracts\Wave.cs" />
     <Compile Include="Assets\Scripts\Enemies\Enemy.cs" />
     <Compile Include="Assets\Scripts\Enemies\HitPoint.cs" />
     <Compile Include="Assets\Scripts\Enemies\Spawner.cs" />
+    <Compile Include="Assets\Scripts\Engine\GenerateWarriorsData.cs" />
     <Compile Include="Assets\Scripts\Engine\SaveEngine.cs" />
     <Compile Include="Assets\Scripts\Helpers\Helpers.cs" />
     <Compile Include="Assets\Scripts\Level Editor\Level Scene\PlusButton.cs" />
@@ -87,7 +90,10 @@
     <Compile Include="Assets\Scripts\Level Editor\UI\WaveScrollView.cs" />
     <Compile Include="Assets\Scripts\Level Editor\UI\WaveUI.cs" />
     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Manager\TowerSpawner.cs" />
+    <Compile Include="Assets\Scripts\Manager\HighlightedWarriors.cs" />
+    <Compile Include="Assets\Scripts\Manager\Shop.cs" />
+    <Compile Include="Assets\Scripts\Manager\WarriorPrefabs.cs" />
+    <Compile Include="Assets\Scripts\Manager\WarriorsPrefabBase.cs" />
     <Compile Include="Assets\Scripts\Towers\Bullet.cs" />
     <Compile Include="Assets\Scripts\Towers\GokuSSJ3.cs" />
     <Compile Include="Assets\Scripts\Towers\ShootPoint.cs" />

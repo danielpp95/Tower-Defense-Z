@@ -55,7 +55,16 @@
 
         public int GetTileAt(int x, int y)
         {
+            if (x >= this.SizeX ||
+                y >= this.SizeY ||
+                x < 0 ||
+                y < 0)
+            {
+                return 0;
+            }
+
             return this.MapData[x, y];
+
         }
     }
 }
