@@ -62,7 +62,7 @@ MonoBehaviour:
   RotationPart: {fileID: 5578266715642869441}
   Damage: 1
   Radius: 0
-  Range: 10
+  Range: 15
   BulletSpeed: 1
   Animator: {fileID: 5578266715290449286}
   Activated: 0

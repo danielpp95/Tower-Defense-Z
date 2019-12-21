@@ -14,8 +14,8 @@
 
             this.AddWarrior("Goku Base", WarriorEnum.GokuBase, 5, 15f, 3, 1, true, 0);
             this.AddWarrior("Goku SSJ1", WarriorEnum.GokuSSJ1, 10, 15f, 7, 1, true, 0);
-            this.AddWarrior("Goku SSJ2", WarriorEnum.GokuSSJ2, 15, 15f, 13, 1, true, 0);
-            this.AddWarrior("Goku SSJ3", WarriorEnum.GokuSSJ3, 20, 20f, 20, 1, true, 0);
+            //this.AddWarrior("Goku SSJ2", WarriorEnum.GokuSSJ2, 15, 15f, 13, 1, true, 0);
+            //this.AddWarrior("Goku SSJ3", WarriorEnum.GokuSSJ3, 20, 20f, 20, 1, true, 0);
 
             SaveEngine.SaveWarriors(this.warriors);
         }

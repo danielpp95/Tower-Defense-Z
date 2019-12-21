@@ -6,6 +6,7 @@
     public enum EnemyEnum
     {
         None = 0,
-        Nappa = 1,
+        Saibaman = 1,
+        Nappa = 2,
     }
 }
