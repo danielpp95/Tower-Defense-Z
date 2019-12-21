@@ -169,17 +169,26 @@
         {
             switch ((WarriorEnum)this.selectedItem)
             {
+                case WarriorEnum.GokuBase:
+                    return this.GetPrefabWithTexture(
+                        hightlighted,
+                        this.warriorsPrefabs.GokuBase,
+                        this.warriorsPrefabs.GokuBaseMaterials.First());
                 case WarriorEnum.GokuSSJ1:
-                    var prefab = this.warriorsPrefabs.GokuSSJ1;
-                    if (hightlighted)
-                    {
-                        prefab.GetComponentInChildren<SkinnedMeshRenderer>().material = this.warriorsPrefabs.HighlightedMaterial;
-                    }
-                    else
-                    {
-                        prefab.GetComponentInChildren<SkinnedMeshRenderer>().material = this.warriorsPrefabs.GokuSSJ1Materials.First();
-                    }
-                    return prefab;
+                    return this.GetPrefabWithTexture(
+                        hightlighted,
+                        this.warriorsPrefabs.GokuSSJ1,
+                        this.warriorsPrefabs.GokuSSJ1Materials.First());
+                //var prefab = this.warriorsPrefabs.GokuSSJ1;
+                //if (hightlighted)
+                //{
+                //    prefab.GetComponentInChildren<SkinnedMeshRenderer>().material = this.warriorsPrefabs.HighlightedMaterial;
+                //}
+                //else
+                //{
+                //    prefab.GetComponentInChildren<SkinnedMeshRenderer>().material = this.warriorsPrefabs.GokuSSJ1Materials.First();
+                //}
+                //return prefab;
                 //case WarriorEnum.GokuSSJ3:
                 //    return hightlighted ? this.highlightedWarriorsPrefabs.GokuSSJ3 : this.warriorsPrefabs.GokuSSJ3;
                 default:
@@ -187,9 +196,17 @@
             }
         }
 
-        private GameObject GetPreview()
+        private GameObject GetPrefabWithTexture(bool hightlighted, GameObject prefab, Material material)
         {
-            return this.transform.Find("previewPrefab") != null ? this.transform.Find("previewPrefab").gameObject : null;
+            if (hightlighted)
+            {
+                prefab.GetComponentInChildren<SkinnedMeshRenderer>().material = this.warriorsPrefabs.HighlightedMaterial;
+            }
+            else
+            {
+                prefab.GetComponentInChildren<SkinnedMeshRenderer>().material = material;
+            }
+            return prefab;
         }
 
         private void BuyTower()

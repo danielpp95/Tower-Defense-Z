@@ -99,6 +99,12 @@
         {
             this.targetDirection = this.target.transform.position - this.transform.position;
 
+            if (this.targetDirection.magnitude > this.Range)
+            {
+                this.target = null;
+                return;
+            }
+
             var lookRotation = Quaternion.LookRotation(this.targetDirection);
 
             var rotation = Quaternion.Lerp(

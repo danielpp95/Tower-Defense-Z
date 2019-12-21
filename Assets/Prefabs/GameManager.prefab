@@ -1,0 +1,144 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1610091640975827225
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1610091640975827231}
+  - component: {fileID: 1610091640975827224}
+  - component: {fileID: 1610091640975827229}
+  - component: {fileID: 1610091640975827230}
+  - component: {fileID: 1610091640975827228}
+  - component: {fileID: 1610091640975827426}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1610091640975827231
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610091640975827225}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1610091640975827224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610091640975827225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db92320adbf225843bec51745dabf2a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileSize: 10
+  EditorMode: 0
+  SpawnObject: {fileID: 373917911654772186, guid: 8d6f4e31713513b408e190207e2efa41,
+    type: 3}
+  EndObject: {fileID: 4986634477810382851, guid: 9fdadf607e5966a45ad524ec79110126,
+    type: 3}
+  Ground: {fileID: 4239534857670900830, guid: d7b284768292b3f4dae253b460b6b883, type: 3}
+  Path: {fileID: 7856684699468723414, guid: dc8e106acded55140ae69a2ee25b937b, type: 3}
+  AddButton: {fileID: 5475684807448011613, guid: 9dda1f06f39742f408cfa0f818281d2e,
+    type: 3}
+  RemoveButton: {fileID: 5656136982470913537, guid: c361cdbbaed2e4243b76f3066cf7ff0c,
+    type: 3}
+  Camera: {fileID: 0}
+--- !u!114 &1610091640975827229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610091640975827225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fc8f7339e9812d42a21495e07264473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1610091640975827230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610091640975827225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 166c05d9b499c0a44823a9fe7ce563f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WavesText: {fileID: 0}
+  LivesText: {fileID: 0}
+  CashText: {fileID: 0}
+  TimerText: {fileID: 0}
+  TimerContainer: {fileID: 0}
+--- !u!114 &1610091640975827228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610091640975827225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc891b4f52707ea42ac26f1c875bb8ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ButtonPrefab: {fileID: 4252270457693643017, guid: c9f4b910f6d929f40bf3f0078648ba7b,
+    type: 3}
+  WarriorsContainer: {fileID: 0}
+  SelectedColor: {r: 0.98039216, g: 0.78431374, b: 0.5294118, a: 1}
+  ButtonPrefablist: []
+--- !u!114 &1610091640975827426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610091640975827225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49cc43c4afca86a4e87c5d0bbc96aab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HighlightedMaterial: {fileID: 2100000, guid: 095ba0c94c4224742b4e97f65a29f035, type: 2}
+  GokuBase: {fileID: 5578266715290449280, guid: a4af01c036b3e924b856e2daa3f5fba5,
+    type: 3}
+  GokuBaseMaterials:
+  - {fileID: 2100000, guid: af7139156b984964482fa9b0d8f248c9, type: 2}
+  - {fileID: 2100000, guid: d919e67e7145be14fb3598a52c6c0f2e, type: 2}
+  - {fileID: 2100000, guid: b486668dc2e8b744686e6212faa35558, type: 2}
+  - {fileID: 2100000, guid: 31865c706e18d2d4cac84f50ef19c122, type: 2}
+  - {fileID: 2100000, guid: 74ca8e409f548db44ab48e68f76c51e9, type: 2}
+  - {fileID: 2100000, guid: 673a14ab8fdf7a740b7701fe38272569, type: 2}
+  - {fileID: 2100000, guid: 07eaa45728dc0104cbf2baaeaf50d7a4, type: 2}
+  - {fileID: 2100000, guid: dd50c2d8e8fe2a840b063037d02aca5b, type: 2}
+  - {fileID: 2100000, guid: 66f873fbb00225045b4fef3c12074a62, type: 2}
+  - {fileID: 2100000, guid: 7ba9a237171556549b30c794076c2ffd, type: 2}
+  - {fileID: 2100000, guid: 0fa331ee149c55448b45ff8fc5f184b3, type: 2}
+  - {fileID: 2100000, guid: 6d55a923d758ff646a45235159a433ab, type: 2}
+  GokuSSJ1: {fileID: 933703238415233858, guid: bd1773be26dabc145ba18f599072d4c1, type: 3}
+  GokuSSJ1Materials:
+  - {fileID: 2100000, guid: bf89b1f3a162b7f4ea31651b6a8fca37, type: 2}
+  - {fileID: 2100000, guid: 4735e29f9426779448a4c3addbc8fb69, type: 2}
+  - {fileID: 2100000, guid: 150c3ac16f2793341a122dea5e56904a, type: 2}
+  - {fileID: 2100000, guid: f9c0ce8d4c512bf40ab7cf687196d05e, type: 2}
+  GokuSSJ3: {fileID: 0}
+  GokuSSJ3Materials: []

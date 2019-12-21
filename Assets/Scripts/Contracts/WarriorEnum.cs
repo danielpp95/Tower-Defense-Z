@@ -5,7 +5,7 @@
     [Serializable]
     public enum WarriorEnum
     {
-        Goku = 0,
+        GokuBase = 0,
         GokuSSJ1 = 1,
         GokuSSJ2 = 2,
         GokuSSJ3 = 3,

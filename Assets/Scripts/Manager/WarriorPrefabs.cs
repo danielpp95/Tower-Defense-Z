@@ -7,8 +7,8 @@ namespace Assets.Scripts.Manager
     {
         public Material HighlightedMaterial;
 
-        //public GameObject Goku;
-        //public List<Material> GokuMaterials;
+        public GameObject GokuBase;
+        public List<Material> GokuBaseMaterials;
 
         public GameObject GokuSSJ1;
         public List<Material> GokuSSJ1Materials;
