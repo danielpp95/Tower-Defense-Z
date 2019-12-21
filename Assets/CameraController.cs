@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour
     public float PanborderThickness = 10f;
     public float ScrollSpeed = 5f;
 
-    private bool canMove = true;
+    private bool canMove = false;
     private float minY = 30f;
     private float maxY = 80f;
 
@@ -29,19 +29,27 @@ public class CameraController : MonoBehaviour
             return;
         }
 
-        if (Input.GetKey(KeyCode.W) || Input.mousePosition.y >= Screen.height - PanborderThickness)
+        if (Input.GetKey(KeyCode.W) ||
+            Input.GetKey(KeyCode.UpArrow) ||
+            Input.mousePosition.y >= Screen.height - PanborderThickness)
         {
             this.MoveCamera(Vector3.forward);
         }
-        if (Input.GetKey(KeyCode.S) || Input.mousePosition.y <= PanborderThickness)
+        if (Input.GetKey(KeyCode.S) ||
+            Input.GetKey(KeyCode.DownArrow) ||
+            Input.mousePosition.y <= PanborderThickness)
         {
             this.MoveCamera(Vector3.back);
         }
-        if (Input.GetKey(KeyCode.D) || Input.mousePosition.x >= Screen.width - PanborderThickness)
+        if (Input.GetKey(KeyCode.D) ||
+            Input.GetKey(KeyCode.RightArrow) ||
+            Input.mousePosition.x >= Screen.width - PanborderThickness)
         {
             this.MoveCamera(Vector3.right);
         }
-        if (Input.GetKey(KeyCode.A) || Input.mousePosition.x <= PanborderThickness)
+        if (Input.GetKey(KeyCode.A) ||
+            Input.GetKey(KeyCode.LeftArrow) ||
+            Input.mousePosition.x <= PanborderThickness)
         {
             this.MoveCamera(Vector3.left);
         }
