@@ -11,11 +11,15 @@
         public float Radius = 0;
         public float Range = 10f;
         public float BulletSpeed = 1f;
+        public Animator Animator;
+
+        public bool Activated = false;
 
         public float RotationSpeed = 10f;
 
         private HitPoint target;
         private Vector3 targetDirection;
+        private bool isAttacking = false;
 
         protected float fireCooldown = 0.5f;
         protected float fireCooldownLeft = 0;
@@ -29,16 +33,40 @@
         // Update is called once per frame
         void Update()
         {
-            if (target == null)
+            if (this.Activated)
             {
-                FindTarget();
-            }
+                if (target == null)
+                {
+                    FindTarget();
+                }
 
+                if (this.target != null)
+                {
+                    this.LookAtTarget();
+                    this.ShootAt(this.target);
+                }
+            }
+        }
+
+        public void Attack()
+        {
             if (this.target != null)
             {
-                this.LookAtTarget();
-                this.ShootAt(this.target);
+                var shootPoint = this.transform.GetComponentInChildren<ShootPoint>().transform.position;
+
+                var bulletGO = Instantiate(this.BulletPrefab, shootPoint, Quaternion.identity);
+                var bullet = bulletGO.GetComponent<Bullet>();
+                bullet.target = this.target.transform;
+                bullet.damage = this.Damage;
+                bullet.radius = this.Radius;
+                bullet.speed = this.BulletSpeed;
             }
+        }
+
+        public void EndAttack()
+        {
+            this.isAttacking = false;
+            Debug.Log("end");
         }
 
         private void FindTarget()
@@ -84,28 +112,11 @@
         protected void ShootAt(HitPoint enemy)
         {
             fireCooldownLeft -= Time.deltaTime;
-
-            if (this.targetDirection.magnitude <= this.Range)
+            if (fireCooldownLeft <= 0 && !isAttacking)
             {
-                if (fireCooldownLeft <= 0)
-                {
-                    this.GetComponentInChildren<Animator>().SetBool("Attack", true);
-
-                    fireCooldownLeft = fireCooldown;
-
-                    var shootPoint = this.transform.GetComponentInChildren<ShootPoint>().transform.position;
-
-                    var bulletGO = Instantiate(this.BulletPrefab, shootPoint, Quaternion.identity);
-                    var bullet = bulletGO.GetComponent<Bullet>();
-                    bullet.target = this.target.transform;
-                    bullet.damage = this.Damage;
-                    bullet.radius = this.Radius;
-                    bullet.speed = this.BulletSpeed;
-                }
-            }
-            else
-            {
-                this.target = null;
+                fireCooldownLeft = fireCooldown;
+                this.isAttacking = true;
+                this.Animator.SetTrigger("Attack");
             }
         }
 

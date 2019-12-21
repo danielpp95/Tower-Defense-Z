@@ -4,6 +4,7 @@
     using System.Linq;
     using Assets.Scripts.Contracts;
     using Assets.Scripts.Engine;
+    using Assets.Scripts.Towers;
     using UnityEngine;
     using UnityEngine.UI;
 
@@ -17,7 +18,6 @@
         private List<Warrior> warriors;
         public List<Button> ButtonPrefablist;
         private GameManager gameManager;
-        private HighlightedWarriors highlightedWarriorsPrefabs;
         private WarriorPrefabs warriorsPrefabs;
         private GameObject previewPrefab;
 
@@ -31,7 +31,6 @@
             this.selectedWarrior = null;
             this.warriors = SaveEngine.LoadWarriors();
             this.gameManager = GetComponent<GameManager>();
-            this.highlightedWarriorsPrefabs = GetComponent<HighlightedWarriors>();
             this.warriorsPrefabs = GetComponent<WarriorPrefabs>();
 
             foreach (var w in this.warriors)
@@ -170,8 +169,17 @@
         {
             switch ((WarriorEnum)this.selectedItem)
             {
-                //case WarriorEnum.Goku:
-                //    return hightlighted ? this.highlightedWarriorsPrefabs.Goku : this.warriorsPrefabs.Goku;
+                case WarriorEnum.GokuSSJ1:
+                    var prefab = this.warriorsPrefabs.GokuSSJ1;
+                    if (hightlighted)
+                    {
+                        prefab.GetComponentInChildren<SkinnedMeshRenderer>().material = this.warriorsPrefabs.HighlightedMaterial;
+                    }
+                    else
+                    {
+                        prefab.GetComponentInChildren<SkinnedMeshRenderer>().material = this.warriorsPrefabs.GokuSSJ1Materials.First();
+                    }
+                    return prefab;
                 //case WarriorEnum.GokuSSJ3:
                 //    return hightlighted ? this.highlightedWarriorsPrefabs.GokuSSJ3 : this.warriorsPrefabs.GokuSSJ3;
                 default:
@@ -191,7 +199,8 @@
                 var point = this.GetMouseXYZPoint();
                 this.gameManager.level.TileMap.MapData[(int)point.x, (int)point.z] = (int)TileEnum.Tower;
 
-                Instantiate(this.GetPrefab(false), point * 10, Quaternion.identity);
+                var go = Instantiate(this.GetPrefab(false), point * 10, Quaternion.identity);
+                go.GetComponent<Tower>().Activated = true;
 
                 this.SetButtonColor(ButtonPrefablist.First(), Color.white);
 
