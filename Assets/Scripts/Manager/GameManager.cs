@@ -17,6 +17,7 @@
         public Text TimerText;
 
         public GameObject TimerContainer;
+        public Transform StartPoint;
 
         private int lives = 7;
         private int cash;
@@ -30,7 +31,7 @@
 
             this.SetActualWave(0);
 
-            this.gameObject.GetComponent<TilemapController>().Initialize(level.TileMap);
+            this.gameObject.GetComponent<TilemapController>().Initialize(this.level.TileMap, this.StartPoint);
         }
 
         private void Start()

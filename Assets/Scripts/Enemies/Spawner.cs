@@ -18,25 +18,33 @@
         private List<Wave> waves;
         private GameManager gameManager;
 
+        private bool isEditing = true;
+
         // Start is called before the first frame update
         void Start()
         {
-            this.gameManager = FindObjectOfType<GameManager>();
-            this.waves = this.gameManager.level.Waves;
+            if (!this.isEditing)
+            {
+                this.gameManager = FindObjectOfType<GameManager>();
+                this.waves = this.gameManager.level.Waves;
+            }
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (countdown <= 0f)
+            if (!this.isEditing)
             {
-                this.GetNextWave();
-                countdown = TimeBetweenWaves;
+                if (countdown <= 0f)
+                {
+                    this.GetNextWave();
+                    countdown = TimeBetweenWaves;
+                }
+
+                this.SetTimer();
+
+                this.countdown -= Time.deltaTime;
             }
-
-            this.SetTimer();
-
-            this.countdown -= Time.deltaTime;
         }
 
         private IEnumerator SpawnWave(Wave wave)

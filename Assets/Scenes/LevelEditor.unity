@@ -3861,6 +3861,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileSize: 10
+  EditorMode: 1
   SpawnObject: {fileID: 373917911654772186, guid: 8d6f4e31713513b408e190207e2efa41,
     type: 3}
   EndObject: {fileID: 4986634477810382851, guid: 9fdadf607e5966a45ad524ec79110126,

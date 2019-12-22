@@ -89,6 +89,7 @@ MonoBehaviour:
   CashText: {fileID: 0}
   TimerText: {fileID: 0}
   TimerContainer: {fileID: 0}
+  StarPoint: {fileID: 0}
 --- !u!114 &1610091640975827228
 MonoBehaviour:
   m_ObjectHideFlags: 0

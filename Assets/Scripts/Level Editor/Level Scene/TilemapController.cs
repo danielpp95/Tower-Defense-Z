@@ -22,6 +22,8 @@
 
         public Transform Camera;
 
+        private Transform StartPoint;
+
         public TileMap tileMap;
 
         private Vector2Int DrawPoint;
@@ -31,13 +33,15 @@
         {
         }
 
-        public void Initialize(TileMap tileMap)
+        public void Initialize(TileMap tileMap, Transform startPoint)
         {
-            if (tileMap == null)
+            if (tileMap == null || startPoint == null)
             {
-                Debug.LogError("TileMap cannot be null");
+                Debug.LogError("TileMap and start point cannot be null");
                 return;
             }
+
+            this.StartPoint = startPoint;
 
             this.tileMap = tileMap;
             this.sizeX = tileMap.SizeX;
@@ -77,23 +81,24 @@
                             Debug.LogError($"Unknown tiletype found on: X: {x}, Y: {z}");
                             break;
                         case TileEnum.Ground:
-                            tile = Instantiate(Ground, position, new Quaternion());
+                            tile = Instantiate(Ground);
                             break;
                         case TileEnum.Path:
-                            tile = Instantiate(Path, position, new Quaternion());
+                            tile = Instantiate(Path);
                             break;
                         case TileEnum.Spawn:
-                            tile = Instantiate(SpawnObject, position, new Quaternion());
+                            tile = Instantiate(SpawnObject);
                             break;
                         case TileEnum.End:
-                            tile = Instantiate(EndObject, position, new Quaternion());
+                            tile = Instantiate(EndObject);
                             break;
                         default:
                             break;
                     }
 
                     tile.name = $"[{x}],[{z}]";
-                    tile.transform.parent = this.transform;
+                    tile.transform.parent = this.StartPoint;
+                    tile.transform.position = this.StartPoint.position + position;
                 }
             }
         }

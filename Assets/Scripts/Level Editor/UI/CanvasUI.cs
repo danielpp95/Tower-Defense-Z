@@ -28,7 +28,7 @@
 
         private void Start()
         {
-            this.Level = new Level { Waves = new List<Wave>(), TileMap = new TileMap(5, 3) };
+            this.Level = new Level { Waves = new List<Wave>(), TileMap = new TileMap(20, 20) };
         }
 
         public void ShowEditor()
@@ -45,7 +45,7 @@
         {
             this.DisableViewsExcept(this.SceneUI, disableUI: true);
 
-            FindObjectOfType<TilemapController>().Initialize(this.Level.TileMap);
+            FindObjectOfType<TilemapController>().Initialize(this.Level.TileMap, this.transform);
         }
 
         public void WaveManager()
